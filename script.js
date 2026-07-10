@@ -47,34 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(updateClock, 1000);
   }
 
-  // ===== JAM DIGITAL DI HEADER =====
-  const headerClockTime = document.getElementById('header-clock-time');
-  const headerClockDate = document.getElementById('header-clock-date');
-
-  if (headerClockTime) {
-    function updateHeaderClock() {
-      const now = new Date();
-
-      headerClockTime.textContent = now.toLocaleTimeString('id-ID', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      }) + ' WIB';
-
-      if (headerClockDate) {
-        headerClockDate.textContent = now.toLocaleDateString('id-ID', {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        });
-      }
-    }
-    updateHeaderClock();
-    setInterval(updateHeaderClock, 1000);
-  }
-
   // ===== MOBILE NAV TOGGLE =====
   const navToggle = document.getElementById('nav-toggle');
   const navMenu   = document.getElementById('nav-menu');
