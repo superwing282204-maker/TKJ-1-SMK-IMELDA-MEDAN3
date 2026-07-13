@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Liburan - TKJ 1</title>
+<title>Program Kelas - TKJ 1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -191,18 +191,18 @@
     max-width:640px;
   }
   .hero h1{
-    font-size:64px;
+    font-size:60px;
     line-height:1.08;
     margin:20px 0 24px;
   }
   .hero h1 em{font-style:italic; color:var(--gold);}
   @media (max-width:640px){
-    .hero h1{font-size:38px;}
+    .hero h1{font-size:36px;}
   }
   .hero p.lead{
     font-size:17px;
     color:#e9e6dd;
-    max-width:440px;
+    max-width:460px;
     margin-bottom:32px;
   }
   .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
@@ -280,6 +280,7 @@
     margin:0;
     overflow:hidden;
     border-radius:2px;
+    cursor:pointer;
   }
   .gallery figure::before{
     content:"";
@@ -309,7 +310,6 @@
   }
   .gallery figure:hover figcaption{opacity:1; transform:translateY(0);}
 
-  /* corner frame accent — signature element */
   .gallery figure .corner{
     position:absolute;
     width:18px; height:18px;
@@ -354,12 +354,6 @@
     min-height:280px;
     object-fit:cover;
   }
-  .video-card .label{
-    position:absolute;
-    left:20px; bottom:20px;
-    z-index:2;
-    color:var(--ivory);
-  }
   .video-card::after{
     content:"";
     position:absolute; inset:0;
@@ -384,7 +378,7 @@
   .video-stack .video-card{flex:1;}
   .video-stack .video-card video{min-height:130px;}
 
-  /* DESTINATIONS */
+  /* PROGRAM GRID (mengganti dest-grid) */
   .dest-grid{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
@@ -500,13 +494,91 @@
     flex-wrap:wrap;
     gap:10px;
   }
+
+  /* PHOTO MODAL */
+  .photo-modal{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    background:rgba(20,24,26,0.88);
+    opacity:0;
+    transition:opacity .25s ease;
+  }
+  .photo-modal.open{
+    display:flex;
+    opacity:1;
+  }
+  .photo-modal-inner{
+    position:relative;
+    max-width:920px;
+    width:100%;
+    max-height:88vh;
+    background:var(--ivory);
+    border-radius:4px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transform:translateY(14px);
+    transition:transform .25s ease;
+  }
+  .photo-modal.open .photo-modal-inner{
+    transform:translateY(0);
+  }
+  .photo-modal-img{
+    width:100%;
+    max-height:52vh;
+    object-fit:cover;
+    background:var(--ink);
+  }
+  .photo-modal-body{
+    padding:28px 32px 32px;
+    overflow-y:auto;
+  }
+  .photo-modal-body .eyebrow{margin-bottom:12px;}
+  .photo-modal-body h3{
+    font-size:28px;
+    color:var(--ink);
+    margin-bottom:14px;
+  }
+  .photo-modal-body p{
+    font-size:14.5px;
+    color:#5b5a52;
+    margin:0;
+    line-height:1.7;
+  }
+  .photo-modal-close{
+    position:absolute;
+    top:16px; right:16px;
+    z-index:2;
+    width:38px; height:38px;
+    border-radius:50%;
+    border:none;
+    background:rgba(20,24,26,0.55);
+    color:var(--ivory);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:background .2s ease;
+  }
+  .photo-modal-close:hover{background:var(--gold); color:var(--ink);}
+  .photo-modal-close svg{width:16px; height:16px;}
+
+  @media (max-width:640px){
+    .photo-modal-body{padding:22px 22px 26px;}
+    .photo-modal-body h3{font-size:22px;}
+  }
 </style>
 </head>
 <body>
 
 <section class="hero">
-  <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=1400&auto=format&fit=crop">
-    <source src="https://cdn.coverr.co/videos/coverr-beach-to-the-ocean-170/1080p.mp4" type="video/mp4">
+  <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop">
+    <source src="https://cdn.coverr.co/videos/coverr-working-on-a-laptop-2617/1080p.mp4" type="video/mp4">
   </video>
 
   <nav class="top">
@@ -518,22 +590,22 @@
       <div class="brand">TKJ <em>1</em></div>
       <ul>
         <li><a href="#Beranda">Beranda</a></li>
-        <li><a href="./galeri.html">Galeri</a></li>
-        <li><a href="./cerita.html">Cerita</a></li>
-        <li><a href="./galeri-foto.html">FOTO</a></li>
-        <li><a href="./galeri-video.html">VIDEO</a></li>
+        <li><a href="#program">Program</a></li>
+        <li><a href="#praktik">Praktik</a></li>
+        <li><a href="#kompetensi">Kompetensi</a></li>
+        <li><a href="#kenapa">Kenapa Ini</a></li>
       </ul>
     </div>
   </nav>
 
   <div class="wrap">
     <div class="hero-content">
-      <span class="eyebrow">Liburan Sekelas · Bali</span>
-      <h1>Liburan yang <em>nggak akan</em> kita lupain.</h1>
-      <p class="lead">Tiga hari, satu kelas, seribu foto — ini dokumentasi lengkap perjalanan TKJ 1 ke Bali, biar bisa diputar ulang kapan pun kita kangen.</p>
+      <span class="eyebrow">Program Keahlian · Teknik Komputer dan Jaringan</span>
+      <h1>Program yang <em>membentuk</em> kompetensi kami.</h1>
+      <p class="lead">Dari instalasi jaringan sampai administrasi server — inilah rangkaian program TKJ 1 yang kami jalani setiap minggu, dirancang untuk siap kerja dan siap lanjut.</p>
       <div class="cta-row">
-        <a href="./galeri.html" class="btn btn-gold">Lihat Galeri</a>
-        <a href="#cerita" class="btn btn-ghost">Baca Cerita Perjalanan</a>
+        <a href="#program" class="btn btn-gold">Lihat Program</a>
+        <a href="#kompetensi" class="btn btn-ghost">Lihat Kompetensi</a>
       </div>
     </div>
   </div>
@@ -541,85 +613,103 @@
   <div class="scroll-cue">Gulir ke Bawah</div>
 </section>
 
-<section id="galeri">
+<section id="program">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Dari Kamera Kita</span>
-      <h2>Momen yang Beneran Kejadian</h2>
-      <p>Semua foto ini diambil langsung selama trip — bukan foto katalog, bukan foto pinjaman.</p>
+      <span class="eyebrow">Kegiatan Belajar</span>
+      <h2>Praktik yang Benar-Benar Kami Jalani</h2>
+      <p>Bukan cuma teori di papan tulis — ini kegiatan nyata yang jadi rutinitas mingguan anak-anak TKJ 1 di lab.</p>
     </div>
 
     <div class="gallery">
-      <figure class="g-tall">
+      <figure class="g-tall" onclick="openPhoto(this)"
+        data-img="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1200&auto=format&fit=crop"
+        data-title="Instalasi Jaringan LAN"
+        data-desc="Siswa berlatih memasang dan menata kabel jaringan (crimping, terminasi, dan pengujian koneksi) untuk membangun LAN dari nol, mulai dari perencanaan jalur kabel sampai pengujian konektivitas antar perangkat.">
         <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=800&auto=format&fit=crop" alt="Pantai Bali">
-        <figcaption>Nusa Dua, Bali</figcaption>
+        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop" alt="Instalasi jaringan">
+        <figcaption>Instalasi Jaringan LAN</figcaption>
       </figure>
-      <figure class="g-wide">
+      <figure class="g-wide" onclick="openPhoto(this)"
+        data-img="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1400&auto=format&fit=crop"
+        data-title="Konfigurasi Server"
+        data-desc="Praktik instalasi sistem operasi server, pengaturan layanan jaringan seperti DNS dan DHCP, serta manajemen akses pengguna — bagian inti dari kompetensi Administrasi Server.">
         <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?q=80&w=1200&auto=format&fit=crop" alt="Sawah terasering">
-        <figcaption>Sawah Terasering, Ubud</figcaption>
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop" alt="Konfigurasi server">
+        <figcaption>Konfigurasi Server</figcaption>
       </figure>
-      <figure>
+      <figure onclick="openPhoto(this)"
+        data-img="https://images.unsplash.com/photo-1591405351990-4726e331f141?q=80&w=1200&auto=format&fit=crop"
+        data-title="Perangkat Router & Switch"
+        data-desc="Pengenalan dan konfigurasi dasar perangkat aktif jaringan seperti router dan switch, termasuk pengaturan VLAN dan routing sederhana di lab TKJ 1.">
         <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?q=80&w=800&auto=format&fit=crop" alt="Kuil Bangkok">
-        <figcaption>Bangkok</figcaption>
+        <img src="https://images.unsplash.com/photo-1591405351990-4726e331f141?q=80&w=800&auto=format&fit=crop" alt="Perangkat jaringan">
+        <figcaption>Perangkat Router & Switch</figcaption>
       </figure>
-      <figure>
+      <figure onclick="openPhoto(this)"
+        data-img="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop"
+        data-title="Troubleshooting PC"
+        data-desc="Siswa mendiagnosis dan memperbaiki masalah umum pada perangkat komputer, mulai dari hardware, sistem operasi, sampai koneksi jaringan — melatih kemampuan problem solving di lapangan.">
         <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=800&auto=format&fit=crop" alt="Candi Yogyakarta">
-        <figcaption>Candi, Yogyakarta</figcaption>
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop" alt="Troubleshooting PC">
+        <figcaption>Troubleshooting PC</figcaption>
       </figure>
-      <figure class="g-wide">
+      <figure class="g-wide" onclick="openPhoto(this)"
+        data-img="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=1400&auto=format&fit=crop"
+        data-title="Desain Topologi Jaringan"
+        data-desc="Merancang skema topologi jaringan di atas kertas maupun software simulasi sebelum diterapkan langsung ke perangkat fisik, melatih pola pikir perencanaan sebelum eksekusi.">
         <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1200&auto=format&fit=crop" alt="Villa tepi pantai">
-        <figcaption>Villa Tepi Pantai</figcaption>
+        <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=1200&auto=format&fit=crop" alt="Desain topologi jaringan">
+        <figcaption>Desain Topologi Jaringan</figcaption>
       </figure>
-      <figure>
+      <figure onclick="openPhoto(this)"
+        data-img="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop"
+        data-title="Workshop Hardware"
+        data-desc="Sesi bongkar-pasang komponen komputer (perakitan PC, penggantian komponen, pengecekan perangkat keras) untuk memperkuat pemahaman siswa tentang hardware secara langsung.">
         <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1524290119152-9a8d4c8d3f2a?q=80&w=800&auto=format&fit=crop" alt="Senja tebing Uluwatu">
-        <figcaption>Senja, Uluwatu</figcaption>
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="Workshop hardware">
+        <figcaption>Workshop Hardware</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<section class="dark" id="sorotan">
+<section class="dark" id="praktik">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Bukan Sekadar Foto</span>
-      <h2>Sorotan dalam Gerak</h2>
-      <p>Klip pendek dari momen-momen paling seru selama tiga hari itu — pantai, senja, sampai acara nginep bareng.</p>
+      <span class="eyebrow">Bukan Sekadar Teori</span>
+      <h2>Kompetensi dalam Aksi</h2>
+      <p>Cuplikan singkat dari kegiatan praktikum, workshop, dan persiapan lomba yang jadi bagian dari program kelas.</p>
     </div>
 
     <div class="video-grid">
       <div class="video-card">
-        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=1200&auto=format&fit=crop">
-          <source src="https://cdn.coverr.co/videos/coverr-relaxing-tropical-beach-5075/360p.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=1200&auto=format&fit=crop">
+          <source src="https://cdn.coverr.co/videos/coverr-working-in-network-room-5522/360p.mp4" type="video/mp4">
         </video>
         <div class="label">
-          <span>Rute Favorit</span>
-          <h3>Pantai Tenang, Nusa Dua</h3>
+          <span>Praktikum Utama</span>
+          <h3>Lab Jaringan & Server</h3>
         </div>
       </div>
 
       <div class="video-stack">
         <div class="video-card">
-          <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=800&auto=format&fit=crop">
-            <source src="https://cdn.coverr.co/videos/coverr-villas-by-the-sea-7295/360p.mp4" type="video/mp4">
+          <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop">
+            <source src="https://cdn.coverr.co/videos/coverr-repairing-a-computer-2620/360p.mp4" type="video/mp4">
           </video>
           <div class="label">
-            <span>Menginap</span>
-            <h3>Villa Tepi Laut</h3>
+            <span>Workshop</span>
+            <h3>Perakitan & Perbaikan PC</h3>
           </div>
         </div>
         <div class="video-card">
-          <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=800&auto=format&fit=crop">
-            <source src="https://cdn.coverr.co/videos/coverr-a-tropical-beach-681/360p.mp4" type="video/mp4">
+          <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop">
+            <source src="https://cdn.coverr.co/videos/coverr-coding-on-a-laptop-6929/360p.mp4" type="video/mp4">
           </video>
           <div class="label">
-            <span>Golden Hour</span>
-            <h3>Senja di Tebing</h3>
+            <span>Persiapan Lomba</span>
+            <h3>Latihan LKS / Kompetisi</h3>
           </div>
         </div>
       </div>
@@ -627,77 +717,77 @@
   </div>
 </section>
 
-<section id="cerita">
+<section id="kompetensi">
   <div class="wrap">
     <div class="section-head center">
-      <span class="eyebrow">Rencana Perjalanan</span>
-      <h2>Hari demi Hari</h2>
-      <p>Begini alurnya, dari berangkat sampai pulang lagi ke sekolah.</p>
+      <span class="eyebrow">Program Utama</span>
+      <h2>Tiga Pilar Kompetensi</h2>
+      <p>Inilah tiga program inti yang membentuk kompetensi keahlian TKJ 1, dari dasar sampai siap uji sertifikasi.</p>
     </div>
   </div>
 
   <div class="dest-grid">
     <div class="dest-card">
-      <span class="dest-tag">Hari 1</span>
-      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=800&auto=format&fit=crop" alt="Tiba di Bali">
-      <h3>Berangkat & Pantai Nusa Dua</h3>
-      <p>Kumpul jam 05.00 di sekolah, tiba sore, langsung main air sampai matahari turun.</p>
+      <span class="dest-tag">Pilar 1</span>
+      <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop" alt="Jaringan komputer">
+      <h3>Jaringan Komputer</h3>
+      <p>Dasar hingga lanjutan: pengkabelan, subnetting, routing, dan konfigurasi perangkat jaringan.</p>
       <div class="dest-price">
-        <div class="price">Titik kumpul <small>05.00 WITA</small></div>
-        <a href="#galeri">Lihat foto →</a>
+        <div class="price">[Jumlah JP] JP/minggu <small>Pengampu: [Nama Guru]</small></div>
+        <a href="#">Lihat detail →</a>
       </div>
     </div>
 
     <div class="dest-card">
-      <span class="dest-tag">Hari 2</span>
-      <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?q=80&w=800&auto=format&fit=crop" alt="Sawah Ubud">
-      <h3>Sawah Ubud & Kuliner Malam</h3>
-      <p>Foto-foto di terasering, lanjut jajan malam bareng satu angkatan.</p>
+      <span class="dest-tag">Pilar 2</span>
+      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop" alt="Administrasi server">
+      <h3>Administrasi Server</h3>
+      <p>Instalasi dan pengelolaan server, layanan jaringan, serta manajemen pengguna dan hak akses.</p>
       <div class="dest-price">
-        <div class="price">Kumpul <small>07.30 di lobi</small></div>
-        <a href="#galeri">Lihat foto →</a>
+        <div class="price">[Jumlah JP] JP/minggu <small>Pengampu: [Nama Guru]</small></div>
+        <a href="#">Lihat detail →</a>
       </div>
     </div>
 
     <div class="dest-card">
-      <span class="dest-tag">Hari 3</span>
-      <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=800&auto=format&fit=crop" alt="Uluwatu senja">
-      <h3>Uluwatu & Pulang</h3>
-      <p>Senja terakhir di tebing, beli oleh-oleh, lalu perjalanan pulang.</p>
+      <span class="dest-tag">Pilar 3</span>
+      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop" alt="Keamanan siber">
+      <h3>Keamanan Siber</h3>
+      <p>Pengenalan ancaman jaringan, firewall, dan praktik dasar pengamanan sistem.</p>
       <div class="dest-price">
-        <div class="price">Check-out <small>10.00 WITA</small></div>
-        <a href="#galeri">Lihat foto →</a>
+        <div class="price">[Jumlah JP] JP/minggu <small>Pengampu: [Nama Guru]</small></div>
+        <a href="#">Lihat detail →</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="dark" style="padding-bottom:0;" id="kesan">
+<section class="dark" style="padding-bottom:0;" id="kenapa">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Kesan & Pesan</span>
-      <h2>Yang Paling Diingat</h2>
+      <span class="eyebrow">Kenapa Program Ini</span>
+      <h2>Yang Kami Bawa Pulang</h2>
     </div>
     <div class="why-grid">
       <div class="why-item">
         <span class="num">I.</span>
-        <h3>"Nginep bareng semalaman"</h3>
-        <p>Ngobrol sampai pagi di teras villa — momen yang bikin satu angkatan makin dekat.</p>
+        <h3>Sertifikasi Industri</h3>
+        <p>Program disiapkan agar siswa dapat mengikuti uji sertifikasi kompetensi sesuai bidang keahlian.</p>
       </div>
       <div class="why-item">
         <span class="num">II.</span>
-        <h3>"Senja di Uluwatu"</h3>
-        <p>Foto angkatan pas golden hour itu langsung jadi foto profil bareng-bareng.</p>
+        <h3>Praktik Langsung</h3>
+        <p>Lebih banyak waktu di lab dibanding di kelas — belajar dengan mengerjakan, bukan sekadar mendengar.</p>
       </div>
       <div class="why-item">
         <span class="num">III.</span>
-        <h3>"Insiden bus mogok"</h3>
-        <p>Yang tadinya panik, jadi cerita paling sering diulang tiap reuni nanti.</p>
+        <h3>Siap Kerja, Siap Lanjut</h3>
+        <p>Bekal kompetensi yang relevan, baik untuk langsung bekerja maupun melanjutkan pendidikan.</p>
       </div>
     </div>
 
     <div class="back-btn-bottom-wrap">
-      <a href="./index.html" class="back-btn-bottom">
+      <a href="../index.html" class="back-btn-bottom">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Kembali
       </a>
@@ -711,18 +801,52 @@
       <div class="brand">TKJ <em style="color:var(--gold); font-style:italic;">1</em></div>
       <ul class="foot-links">
         <li><a href="#Beranda">Beranda</a></li>
-        <li><a href="./galeri.html">Galeri</a></li>
-        <li><a href="./cerita.html">Cerita</a></li>
-        <li><a href="./galeri-foto.html">FOTO</a></li>
-        <li><a href="./galeri-video.html">VIDEO</a></li>
+        <li><a href="#program">Program</a></li>
+        <li><a href="#praktik">Praktik</a></li>
+        <li><a href="#kompetensi">Kompetensi</a></li>
+        <li><a href="#kenapa">Kenapa Ini</a></li>
       </ul>
     </div>
     <div class="bottom">
-      <span>Didokumentasikan bareng-bareng oleh anak-anak TKJ 1.</span>
-      <span> 2026 — kenangan yang nggak buat dijual, cuma buat dikenang.</span>
+      <span>Program Keahlian Teknik Komputer dan Jaringan — SMK Imelda Medan.</span>
+      <span>© 2026 TKJ 1.</span>
     </div>
   </div>
 </footer>
+
+
+<div class="photo-modal" id="photoModal" onclick="if(event.target===this) closePhoto()">
+  <div class="photo-modal-inner">
+    <button class="photo-modal-close" onclick="closePhoto()" aria-label="Tutup">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <img class="photo-modal-img" id="photoModalImg" src="" alt="">
+    <div class="photo-modal-body">
+      <span class="eyebrow" id="photoModalEyebrow">Dokumentasi Kegiatan</span>
+      <h3 id="photoModalTitle"></h3>
+      <p id="photoModalDesc"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openPhoto(fig){
+    const modal = document.getElementById('photoModal');
+    document.getElementById('photoModalImg').src = fig.getAttribute('data-img');
+    document.getElementById('photoModalTitle').textContent = fig.getAttribute('data-title');
+    document.getElementById('photoModalDesc').textContent = fig.getAttribute('data-desc');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePhoto(){
+    const modal = document.getElementById('photoModal');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closePhoto();
+  });
+</script>
 
 </body>
 </html>
