@@ -91,7 +91,6 @@
               <li><a href="profil/teknik-komputer-jaringan.html">Teknik Komputer dan Jaringan</a></li>
             </ul>
           </li>
-          <li><a href="kurikulum/kalender-akademik.html">Kalender Akademik</a></li>
         </ul>
       </li>
 
@@ -148,7 +147,7 @@
 
       <li><a href="#wali-kelas.html">Wali Kelas</a></li>
       <li><a href="kurikulum/program-keahlian.html">Jurusan</a></li>
-      <li><a href="ppdb.html" class="nav-highlight">Penjelasan</a></li>
+      <li><a href="index.html#chat-anonim" class="nav-highlight">Chat Anonim</a></li>
     </ul>
   </div>
 </nav>
@@ -473,6 +472,36 @@
   </div><!-- end container -->
 </main>
 
+<!-- ===== CHAT ANONIM ===== -->
+<section class="chat-page" id="chat-anonim">
+  <div class="container">
+    <div class="chat-wrap">
+
+      <div class="chat-head">
+        <h1><i class="fas fa-comments"></i> Chat Anonim</h1>
+        <p>Ruang ngobrol terbuka untuk semua pengunjung website TKJ 1. Nama kamu otomatis disamarkan. Tetap sopan dan jaga etika ya!</p>
+      </div>
+
+      <div class="chat-box">
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-loading" id="chat-loading">Memuat pesan...</div>
+        </div>
+
+        <form class="chat-form" id="chat-form">
+          <input type="text" id="chat-input" class="chat-input" placeholder="Tulis pesan..." maxlength="300" autocomplete="off" required />
+          <button type="submit" class="chat-send-btn"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+
+      <p class="chat-note">
+        Kamu tampil sebagai <strong id="chat-my-name">Anon-0000</strong>.
+        Pesan bersifat publik dan bisa dilihat semua orang &mdash; jangan bagikan data pribadi (nomor HP, alamat, dll).
+      </p>
+
+    </div>
+  </div>
+</section>
+
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
   <div class="footer-inner">
@@ -493,5 +522,10 @@
 </footer>
 
 <script src="script.js"></script>
+
+<!-- Firebase (untuk chat realtime yang bisa dilihat semua orang) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="chat.js"></script>
 </body>
 </html>

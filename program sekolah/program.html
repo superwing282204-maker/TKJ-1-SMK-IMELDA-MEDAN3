@@ -3,867 +3,368 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Program Kelas - TKJ 1</title>
+<title>TKJ 1 — Peta Materi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="shortcut icon" href="../images/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#14181A;
-    --ivory:#F5F1E8;
-    --gold:#C6A15B;
-    --emerald:#1B3A34;
-    --stone:#9C9488;
-    --line: rgba(245,241,232,0.18);
-    --line-dark: rgba(20,24,26,0.1);
+    --bg-deep:#0b2545;
+    --bg-panel:#0f2e56;
+    --bg-panel-2:#123863;
+    --line:#3c5f8a;
+    --line-soft:#22456e;
+    --ink:#e8eef5;
+    --ink-dim:#93a9c4;
+    --signal:#ffb627;
+    --signal-dim:#8a5f1a;
+    --ok:#4bd88b;
+    --mono:'IBM Plex Mono', monospace;
+    --sans:'IBM Plex Sans', sans-serif;
   }
-
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--ivory);
+    background:var(--bg-deep);
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:32px 32px;
     color:var(--ink);
-    font-family:'Manrope', sans-serif;
-    line-height:1.6;
+    font-family:var(--sans);
+    line-height:1.5;
   }
-  h1,h2,h3{
-    font-family:'Cormorant Garamond', serif;
-    font-weight:500;
-    margin:0;
-    letter-spacing:0.2px;
-  }
+  ::selection{background:var(--signal); color:var(--bg-deep);}
   a{color:inherit;}
-  img,video{max-width:100%; display:block;}
 
-  .wrap{
-    max-width:1140px;
-    margin:0 auto;
-    padding:0 24px;
+  /* ---------- Topbar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px;
+    background:rgba(11,37,69,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
   }
+  .topbar .id{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.08em;
+    color:var(--ink-dim);
+  }
+  .topbar .id b{color:var(--signal);}
+  .topbar nav{display:flex; gap:22px; font-family:var(--mono); font-size:12.5px;}
+  .topbar nav a{text-decoration:none; color:var(--ink-dim); transition:color .2s;}
+  .topbar nav a:hover{color:var(--signal);}
+  .topbar nav a::before{content:"/ "; color:var(--line);}
 
-  .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:2.4px;
-    text-transform:uppercase;
-    color:var(--gold);
-  }
-  .eyebrow::before{
-    content:"";
-    width:22px;
-    height:1px;
-    background:var(--gold);
-    display:inline-block;
-  }
-
-  /* NAV */
-  nav.top{
-    position:absolute;
-    top:0; left:0; right:0;
-    z-index:20;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:28px 0;
-  }
-  .brand{
-    font-family:'Cormorant Garamond', serif;
-    font-size:24px;
-    color:var(--ivory);
-    letter-spacing:0.5px;
-  }
-  .brand em{color:var(--gold); font-style:italic;}
-  nav.top ul{
-    list-style:none;
-    display:flex;
-    gap:36px;
-    margin:0;
-    padding:0;
-    font-size:13px;
-    font-weight:600;
-    letter-spacing:0.3px;
-  }
-  nav.top ul a{
-    text-decoration:none;
-    color:var(--ivory);
-    opacity:0.8;
-    transition:opacity .2s ease;
-  }
-  nav.top ul a:hover{opacity:1;}
-  @media (max-width:760px){
-    nav.top ul{display:none;}
-  }
-
-  /* BACK BUTTON */
-  .back-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:0.6px;
-    text-transform:uppercase;
-    text-decoration:none;
-    color:var(--ivory);
-    background:rgba(20,24,26,0.35);
-    border:1px solid rgba(245,241,232,0.4);
-    padding:10px 18px;
-    border-radius:999px;
-    transition:all .25s ease;
-    cursor:pointer;
-  }
-  .back-btn:hover{
-    background:var(--gold);
-    border-color:var(--gold);
-    color:var(--ink);
-  }
-  .back-btn svg{
-    width:14px; height:14px;
-    flex-shrink:0;
-  }
-  nav.top .back-btn{margin-right:auto;}
-  nav.top .wrap{position:relative;}
-
-  .back-btn-bottom-wrap{
-    padding:70px 0 0;
-    text-align:center;
-  }
-  .back-btn-bottom{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:0.6px;
-    text-transform:uppercase;
-    text-decoration:none;
-    color:var(--ink);
-    background:transparent;
-    border:1px solid var(--line-dark);
-    padding:12px 26px;
-    border-radius:999px;
-    transition:all .25s ease;
-    cursor:pointer;
-  }
-  .back-btn-bottom:hover{
-    background:var(--gold);
-    border-color:var(--gold);
-    color:var(--ink);
-  }
-  .back-btn-bottom svg{
-    width:14px; height:14px;
-    flex-shrink:0;
-  }
-
-  /* HERO VIDEO */
+  /* ---------- Hero / Topology ---------- */
   .hero{
-    position:relative;
-    height:100vh;
-    min-height:620px;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    color:var(--ivory);
+    padding:64px 28px 28px;
+    max-width:1180px; margin:0 auto;
   }
-  .hero video{
-    position:absolute;
-    top:50%; left:50%;
-    width:100%; height:100%;
-    object-fit:cover;
-    transform:translate(-50%,-50%);
-    z-index:0;
+  .eyebrow{
+    font-family:var(--mono); font-size:12.5px; color:var(--signal);
+    letter-spacing:0.18em; text-transform:uppercase;
+    display:flex; align-items:center; gap:10px; margin-bottom:18px;
   }
-  .hero::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(180deg, rgba(20,24,26,0.55) 0%, rgba(20,24,26,0.35) 45%, rgba(20,24,26,0.75) 100%);
-    z-index:1;
-  }
-  .hero-content{
-    position:relative;
-    z-index:2;
-    max-width:640px;
-  }
+  .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--ok); box-shadow:0 0 8px var(--ok); animation:blink 2.4s infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
+
   .hero h1{
-    font-size:60px;
-    line-height:1.08;
-    margin:20px 0 24px;
+    font-family:var(--mono);
+    font-size:clamp(32px, 5.2vw, 58px);
+    line-height:1.08; margin:0 0 18px; font-weight:700;
+    max-width:16ch;
   }
-  .hero h1 em{font-style:italic; color:var(--gold);}
-  @media (max-width:640px){
-    .hero h1{font-size:36px;}
-  }
-  .hero p.lead{
-    font-size:17px;
-    color:#e9e6dd;
-    max-width:460px;
-    margin-bottom:32px;
-  }
-  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
-  .btn{
-    display:inline-block;
-    padding:15px 30px;
-    font-weight:700;
-    font-size:13px;
-    letter-spacing:0.6px;
-    text-transform:uppercase;
-    text-decoration:none;
-    transition:all .25s ease;
-    border:1px solid transparent;
-  }
-  .btn-gold{
-    background:var(--gold);
-    color:var(--ink);
-  }
-  .btn-gold:hover{background:#d8b877;}
-  .btn-ghost{
-    border-color:rgba(245,241,232,0.5);
-    color:var(--ivory);
-  }
-  .btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
-
-  .scroll-cue{
-    position:absolute;
-    bottom:34px; left:24px;
-    z-index:2;
-    font-size:11px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    color:#cfc9bc;
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .scroll-cue::after{
-    content:"";
-    width:1px;
-    height:34px;
-    background:linear-gradient(#C6A15B, transparent);
+  .hero h1 span{color:var(--signal);}
+  .hero p.lede{
+    max-width:56ch; color:var(--ink-dim); font-size:16.5px; margin:0 0 40px;
   }
 
-  /* SECTION HEAD */
-  .section-head{
-    max-width:600px;
-    margin:0 0 50px;
-  }
-  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
-  .section-head h2{
-    font-size:40px;
-    color:var(--ink);
-    margin:14px 0 12px;
-  }
-  .section-head p{color:#5b5a52; font-size:15px;}
-
-  section{padding:100px 0;}
-  section.dark{
-    background:var(--ink);
-    color:var(--ivory);
-  }
-  section.dark .section-head p{color:#c7c3b8;}
-  section.dark .section-head h2{color:var(--ivory);}
-
-  /* GALLERY - mosaic */
-  .gallery{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    grid-auto-rows:130px;
-    gap:14px;
-  }
-  .gallery figure{
-    position:relative;
-    margin:0;
-    overflow:hidden;
-    border-radius:2px;
-    cursor:pointer;
-  }
-  .gallery figure::before{
-    content:"";
-    position:absolute; inset:0;
-    background:linear-gradient(180deg, transparent 55%, rgba(20,24,26,0.75) 100%);
-    z-index:1;
-    opacity:0;
-    transition:opacity .3s ease;
-  }
-  .gallery figure:hover::before{opacity:1;}
-  .gallery figure img{
-    width:100%; height:100%; object-fit:cover;
-    transition:transform .6s ease;
-  }
-  .gallery figure:hover img{transform:scale(1.06);}
-  .gallery figcaption{
-    position:absolute;
-    left:16px; bottom:12px;
-    z-index:2;
-    color:#fff;
-    font-size:13px;
-    font-weight:600;
-    letter-spacing:0.3px;
-    opacity:0;
-    transform:translateY(6px);
-    transition:all .3s ease;
-  }
-  .gallery figure:hover figcaption{opacity:1; transform:translateY(0);}
-
-  .gallery figure .corner{
-    position:absolute;
-    width:18px; height:18px;
-    z-index:2;
-    opacity:0;
-    transition:opacity .3s ease;
-  }
-  .gallery figure:hover .corner{opacity:1;}
-  .corner.tl{top:10px; left:10px; border-top:2px solid var(--gold); border-left:2px solid var(--gold);}
-  .corner.br{bottom:10px; right:10px; border-bottom:2px solid var(--gold); border-right:2px solid var(--gold);}
-
-  .g-tall{grid-row:span 2;}
-  .g-wide{grid-column:span 2;}
-
-  @media (max-width:900px){
-    .gallery{grid-template-columns:repeat(2,1fr); grid-auto-rows:150px;}
-    .g-wide{grid-column:span 2;}
-  }
-  @media (max-width:520px){
-    .gallery{grid-template-columns:1fr; grid-auto-rows:200px;}
-    .g-wide, .g-tall{grid-column:span 1; grid-row:span 1;}
-  }
-
-  /* VIDEO SHOWCASE */
-  .video-grid{
-    display:grid;
-    grid-template-columns:1.3fr 1fr;
-    gap:20px;
-  }
-  @media (max-width:820px){
-    .video-grid{grid-template-columns:1fr;}
-  }
-  .video-card{
-    position:relative;
-    overflow:hidden;
-    border-radius:4px;
-    border:1px solid var(--line);
-  }
-  .video-card video{
-    width:100%;
-    height:100%;
-    min-height:280px;
-    object-fit:cover;
-  }
-  .video-card::after{
-    content:"";
-    position:absolute; inset:0;
-    background:linear-gradient(180deg, transparent 40%, rgba(20,24,26,0.8) 100%);
-  }
-  .video-card .label{
-    position:absolute; left:22px; bottom:20px; z-index:2;
-  }
-  .video-card .label span{
-    display:block;
-    font-size:11px;
-    letter-spacing:1.6px;
-    text-transform:uppercase;
-    color:var(--gold);
-    margin-bottom:6px;
-  }
-  .video-card .label h3{
-    font-size:24px;
-    color:#fff;
-  }
-  .video-stack{display:flex; flex-direction:column; gap:20px;}
-  .video-stack .video-card{flex:1;}
-  .video-stack .video-card video{min-height:130px;}
-
-  /* PROGRAM GRID (mengganti dest-grid) */
-  .dest-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:2px;
-    background:var(--line-dark);
-  }
-  @media (max-width:820px){.dest-grid{grid-template-columns:1fr;}}
-  .dest-card{
-    background:var(--ivory);
-    padding:36px 30px;
+  .topo-wrap{
+    border:1px solid var(--line); background:var(--bg-panel);
+    border-radius:4px; padding:8px;
     position:relative;
   }
-  .dest-card img{
-    height:210px;
-    object-fit:cover;
-    margin-bottom:22px;
+  .topo-wrap::before{
+    content:"topologi_kelas.svg"; position:absolute; top:-11px; left:16px;
+    background:var(--bg-deep); padding:0 8px; font-family:var(--mono);
+    font-size:11px; color:var(--ink-dim); letter-spacing:.05em;
   }
-  .dest-tag{
-    font-size:11px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:1.2px;
-    color:var(--gold);
-    display:block;
-    margin-bottom:10px;
-  }
-  .dest-card h3{
-    font-size:26px;
-    margin-bottom:10px;
-  }
-  .dest-card p{
-    font-size:14px;
-    color:#5b5a52;
-    margin:0 0 20px;
-  }
-  .dest-price{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-top:1px solid var(--line-dark);
-    padding-top:16px;
-  }
-  .dest-price .price{font-weight:700; font-size:15px;}
-  .dest-price .price small{font-weight:500; color:#5b5a52; font-size:12px;}
-  .dest-price a{
-    font-size:12px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase;
-    color:var(--ink); text-decoration:none;
-    border-bottom:1px solid var(--gold);
-    padding-bottom:2px;
-  }
+  svg text{font-family:var(--mono);}
+  .node-label{fill:var(--ink); font-size:12px; font-weight:600;}
+  .node-sub{fill:var(--ink-dim); font-size:9.5px;}
+  .cable{stroke:var(--line); stroke-width:1.6; fill:none;}
+  .pulse{fill:var(--signal); filter:drop-shadow(0 0 4px var(--signal));}
+  .hub-ring{fill:none; stroke:var(--signal); stroke-width:1.4; opacity:.55;}
+  .port{fill:var(--bg-panel-2); stroke:var(--line); stroke-width:1.2; cursor:pointer; transition:stroke .2s, fill .2s;}
+  .node-group:hover .port{stroke:var(--signal); fill:var(--bg-panel-2);}
+  .led{fill:var(--ok);}
+  .hub-box{fill:var(--bg-panel-2); stroke:var(--signal); stroke-width:1.6;}
 
-  /* WHY - dark section */
-  .why-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:0;
-    border-top:1px solid var(--line);
-  }
-  @media (max-width:820px){.why-grid{grid-template-columns:1fr;}}
-  .why-item{
-    padding:36px 10px 10px 0;
-    border-right:1px solid var(--line);
-  }
-  .why-item:last-child{border-right:none;}
-  @media (max-width:820px){
-    .why-item{border-right:none; border-bottom:1px solid var(--line);}
-  }
-  .why-item .num{
-    font-family:'Cormorant Garamond', serif;
-    font-size:15px;
-    color:var(--gold);
-    margin-bottom:14px;
-    display:block;
-  }
-  .why-item h3{
-    font-size:21px;
-    color:var(--ivory);
-    margin-bottom:10px;
-  }
-  .why-item p{
-    font-size:14px;
-    color:#c7c3b8;
-    margin:0;
-    max-width:280px;
-  }
+  /* ---------- Section shell ---------- */
+  section{max-width:1180px; margin:0 auto; padding:70px 28px;}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:34px; border-bottom:1px solid var(--line); padding-bottom:16px;}
+  .section-head .tag{font-family:var(--mono); font-size:12px; color:var(--signal); border:1px solid var(--signal-dim); padding:3px 8px; border-radius:3px;}
+  .section-head h2{font-family:var(--mono); font-size:24px; margin:0; font-weight:700;}
+  .section-head p{margin:0 0 0 auto; color:var(--ink-dim); font-size:13px; font-family:var(--mono); max-width:34ch; text-align:right;}
 
-  footer.site{
-    background:var(--ink);
-    color:#a9a49a;
-    padding:50px 0 34px;
-    border-top:1px solid var(--line);
+  /* ---------- Config cards (materi) ---------- */
+  .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(270px,1fr)); gap:18px;}
+  .card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:4px;
+    padding:20px 20px 18px; position:relative; overflow:hidden;
+    transition:transform .2s, border-color .2s;
   }
-  .foot-grid{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    flex-wrap:wrap;
-    gap:24px;
-    margin-bottom:36px;
-  }
-  footer.site .brand{color:var(--ivory);}
-  footer.site .foot-links{
-    display:flex; gap:28px; list-style:none; padding:0; margin:0; font-size:13px;
-  }
-  footer.site .foot-links a{text-decoration:none; color:#c7c3b8;}
-  footer.site .foot-links a:hover{color:var(--gold);}
-  footer.site .bottom{
-    font-size:12px;
-    border-top:1px solid var(--line);
-    padding-top:22px;
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:10px;
-  }
+  .card:hover{transform:translateY(-3px); border-color:var(--signal);}
+  .card .idx{font-family:var(--mono); font-size:11px; color:var(--ink-dim); letter-spacing:.1em;}
+  .card h3{font-family:var(--mono); font-size:17px; margin:10px 0 10px; font-weight:600;}
+  .card p{font-size:13.8px; color:var(--ink-dim); margin:0 0 14px;}
+  .card ul{margin:0; padding-left:18px; font-size:13px; color:var(--ink);}
+  .card ul li{margin-bottom:5px;}
+  .card .led-row{position:absolute; top:18px; right:18px; display:flex; gap:5px;}
+  .card .led-row i{width:6px; height:6px; border-radius:50%; background:var(--line); display:block;}
+  .card:hover .led-row i:nth-child(1){background:var(--ok); box-shadow:0 0 6px var(--ok);}
+  .card:hover .led-row i:nth-child(2){background:var(--signal); box-shadow:0 0 6px var(--signal); animation:blink 1.4s infinite;}
 
-  /* PHOTO MODAL */
-  .photo-modal{
-    position:fixed;
-    inset:0;
-    z-index:100;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:24px;
-    background:rgba(20,24,26,0.88);
-    opacity:0;
-    transition:opacity .25s ease;
+  /* ---------- Terminal / jadwal ---------- */
+  .terminal{
+    background:#081b34; border:1px solid var(--line); border-radius:6px;
+    font-family:var(--mono); font-size:13px; overflow:hidden;
   }
-  .photo-modal.open{
-    display:flex;
-    opacity:1;
+  .terminal .bar{display:flex; gap:6px; padding:10px 14px; background:var(--bg-panel-2); border-bottom:1px solid var(--line);}
+  .terminal .bar i{width:9px; height:9px; border-radius:50%; background:var(--line);}
+  .terminal .body{padding:18px 20px; color:var(--ink-dim);}
+  .terminal .body .p{color:var(--ok);}
+  .terminal .body .cmd{color:var(--ink);}
+  .terminal .row{display:flex; gap:14px; padding:6px 0; border-bottom:1px dashed var(--line-soft);}
+  .terminal .row:last-child{border-bottom:none;}
+  .terminal .row .h{width:120px; color:var(--signal); flex-shrink:0;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line); padding:26px 28px; text-align:center;
+    font-family:var(--mono); font-size:12px; color:var(--ink-dim);
   }
-  .photo-modal-inner{
-    position:relative;
-    max-width:920px;
-    width:100%;
-    max-height:88vh;
-    background:var(--ivory);
-    border-radius:4px;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    transform:translateY(14px);
-    transition:transform .25s ease;
-  }
-  .photo-modal.open .photo-modal-inner{
-    transform:translateY(0);
-  }
-  .photo-modal-img{
-    width:100%;
-    max-height:52vh;
-    object-fit:cover;
-    background:var(--ink);
-  }
-  .photo-modal-body{
-    padding:28px 32px 32px;
-    overflow-y:auto;
-  }
-  .photo-modal-body .eyebrow{margin-bottom:12px;}
-  .photo-modal-body h3{
-    font-size:28px;
-    color:var(--ink);
-    margin-bottom:14px;
-  }
-  .photo-modal-body #photoModalDesc p{
-    font-size:14.5px;
-    color:#5b5a52;
-    margin:0 0 14px;
-    line-height:1.7;
-  }
-  .photo-modal-body #photoModalDesc p:last-child{
-    margin-bottom:0;
-  }
-  .photo-modal-close{
-    position:absolute;
-    top:16px; right:16px;
-    z-index:2;
-    width:38px; height:38px;
-    border-radius:50%;
-    border:none;
-    background:rgba(20,24,26,0.55);
-    color:var(--ivory);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    transition:background .2s ease;
-  }
-  .photo-modal-close:hover{background:var(--gold); color:var(--ink);}
-  .photo-modal-close svg{width:16px; height:16px;}
 
   @media (max-width:640px){
-    .photo-modal-body{padding:22px 22px 26px;}
-    .photo-modal-body h3{font-size:22px;}
+    .section-head{flex-wrap:wrap;}
+    .section-head p{text-align:left; margin-left:0;}
+    .topbar nav{display:none;}
   }
 </style>
 </head>
 <body>
 
-<section class="hero">
-  <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop">
-    <source src="https://cdn.coverr.co/videos/coverr-working-on-a-laptop-2617/1080p.mp4" type="video/mp4">
-  </video>
-
-  <nav class="top">
-    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between;">
-      <a href="../index.html" class="back-btn" aria-label="Kembali">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Kembali
-      </a>
-      <div class="brand">TKJ <em>1</em></div>
-      <ul>
-        <li><a href="../index.html">Beranda</a></li>
-        <li><a href="#program">Program</a></li>
-        <li><a href="#praktik">Praktik</a></li>
-        <li><a href="#kompetensi">Kompetensi</a></li>
-        <li><a href="#kenapa">Kenapa Ini</a></li>
-      </ul>
-    </div>
+<div class="topbar">
+  <div class="id">KELAS <b>TKJ&nbsp;1</b> // PETA_MATERI.HTML</div>
+  <nav>
+    <a href="#topologi">Topologi</a>
+    <a href="#materi">Materi</a>
+    <a href="#jadwal">Jadwal</a>
   </nav>
+</div>
 
-  <div class="wrap">
-    <div class="hero-content">
-      <span class="eyebrow">Program Keahlian · Teknik Komputer dan Jaringan</span>
-      <h1>Program yang <em>membentuk</em> kompetensi kami.</h1>
-      <p class="lead">Dari instalasi jaringan sampai administrasi server — inilah rangkaian program TKJ 1 yang kami jalani setiap minggu, dirancang untuk siap kerja dan siap lanjut.</p>
-      <div class="cta-row">
-        <a href="#program" class="btn btn-gold">Lihat Program</a>
-        <a href="#kompetensi" class="btn btn-ghost">Lihat Kompetensi</a>
-      </div>
-    </div>
-  </div>
+<div class="hero" id="topologi">
+  <div class="eyebrow"><span class="dot"></span> STATUS: SEMUA NODE AKTIF</div>
+  <h1>Apa saja yang <span>dipelajari</span> di kelas TKJ 1</h1>
+  <p class="lede">Sebuah peta jaringan dari seluruh materi Teknik Komputer dan Jaringan tingkat 1 — dari merakit unit hingga menghubungkannya ke dunia luar.</p>
 
-  <div class="scroll-cue">Gulir ke Bawah</div>
-</section>
-
-<section id="program">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Kegiatan Belajar</span>
-      <h2>Praktik yang Benar-Benar Kami Jalani</h2>
-      <p>Bukan cuma teori di papan tulis — ini kegiatan nyata yang jadi rutinitas mingguan anak-anak TKJ 1 di lab.</p>
-    </div>
-
-    <div class="gallery">
-      <figure class="g-tall" onclick="openPhoto(this)"
-        data-img="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1200&auto=format&fit=crop"
-        data-title="Instalasi Jaringan LAN"
-        data-desc="1. Apa itu LAN? || LAN (Local Area Network) adalah jaringan komputer yang mencakup area terbatas, seperti dalam satu ruangan, gedung, atau kompleks sekolah/kantor. LAN memungkinkan perangkat (komputer, printer, server) saling terhubung untuk berbagi data, file, dan koneksi internet.|| 2. Komponen yang Dibutuhkan || - Komputer/PC atau laptop (client) || - Server (jika diperlukan untuk jaringan berskala lebih besar) || 2. Perangkat Jaringan (Networking Devices) || Switch — menghubungkan banyak perangkat dalam satu jaringan lokal || Router — menghubungkan LAN ke jaringan lain (misalnya internet/WAN) 
-        || Hub (jarang dipakai lagi, sudah digantikan switch) — versi lama, membagi sinyal ke semua port tanpa manajemen data || Access Point (AP) — jika ingin menambahkan koneksi wireless (Wi-Fi) ke jaringan LAN || 3.Kabel dan Konektor || - Kabel UTP (Unshielded Twisted Pair) — biasanya kategori Cat5e/Cat6 || -Konektor RJ-45 || - Kabel fiber optic (opsional, untuk jaringan skala besar/kecepatan tinggi) || 4. Kartu Jaringan : ||- NIC (Network Interface Card) — biasanya sudah terpasang di motherboard, tapi bisa juga eksternal (USB/PCI) || 5. Alat Bantu Instalasi : || - Crimping tool (tang crimping) — untuk memasang konektor RJ-45 ke kabel UTP 
-        || - LAN tester — untuk menguji apakah kabel sudah terpasang dengan benar || - Cable stripper — untuk mengupas pelindung kabel || 6. Perangkat Lunak (Software) || - Sistem operasi yang mendukung jaringan (Windows, Linux, dll.) || - Driver kartu jaringan || - Software konfigurasi IP address (bisa manual atau via DHCP) || - Firewall/antivirus untuk keamanan jaringan || 7. Komponen Pendukung Lainnya || - Rack server/cabinet — untuk menata perangkat jaringan agar rapi (di jaringan skala menengah-besar) || - Patch panel — untuk manajemen kabel yang lebih rapi || - UPS (Uninterruptible Power Supply) — menjaga perangkat tetap menyala saat listrik mati || 8. Topologi Jaringan || - Sebelum instalasi, perlu ditentukan dulu topologi yang dipakai (star, bus, ring, mesh, dll.) karena ini memengaruhi jumlah dan jenis komponen yang dibutuhkan — topologi star dengan switch di tengah adalah yang paling umum dipakai saat ini.
-        || ">
-        <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop" alt="Instalasi jaringan">
-        <figcaption>Instalasi Jaringan LAN</figcaption>
-      </figure>
-      <figure class="g-wide" onclick="openPhoto(this)"
-        data-img="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1400&auto=format&fit=crop"
-        data-title="Konfigurasi Server"
-        data-desc="1. Pengertian || - Konfigurasi server adalah proses instalasi, pengaturan, dan penyesuaian sistem operasi serta layanan (service) pada sebuah komputer agar dapat menjalankan fungsi tertentu, seperti menyimpan data, mengelola akses jaringan, hosting website, dll. || 2. Tahapan Umum Konfigurasi Server || a. Persiapan Hardware || - Pilih spesifikasi server (CPU, RAM, storage) sesuai kebutuhan beban kerja ||- Pasang komponen tambahan seperti RAID controller (jika perlu redundansi data) || b. Instalasi Sistem Operasi Server || - Windows Server (2016, 2019, 2022) || - Linux (Ubuntu Server, CentOS, Debian) || c. Konfigurasi IP Address || - Server biasanya diberi IP Static (bukan DHCP) agar alamatnya tetap dan mudah diakses client || - Contoh: 192.168.1.1 dengan subnet mask 255.255.255.0 || d. Konfigurasi Keamanan (Security) || - Firewall — mengatur port dan akses yang diizinkan || - User & permission management — mengatur hak akses user 
-        || - Enkripsi data (SSL/TLS) — terutama untuk web server || e. Testing dan Monitoring || -Uji koneksi client ke server (ping, akses layanan) || - Monitoring performa server (CPU, RAM, storage usage) || -Backup dan disaster recovery plan || ">
-        <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop" alt="Konfigurasi server">
-        <figcaption>Konfigurasi Server</figcaption>
-      </figure>
-      <figure onclick="openPhoto(this)"
-        data-img="https://images.unsplash.com/photo-1591405351990-4726e331f141?q=80&w=1200&auto=format&fit=crop"
-        data-title="Perangkat Router & Switch"
-        data-desc="Switch ||- Fungsi utama: Menghubungkan beberapa perangkat (komputer, printer, server) dalam satu jaringan lokal (LAN) yang sama. || Cara kerja: ||- Switch bekerja di Layer 2 (Data Link) pada model OSI ||- Menggunakan MAC address untuk menentukan ke port mana data harus dikirim ||- Setiap perangkat yang terhubung ke switch bisa saling berkomunikasi langsung || Jenis-jenis switch: || - Unmanaged switch – plug and play, tidak bisa dikonfigurasi, cocok untuk jaringan kecil || - Managed switch – bisa dikonfigurasi (VLAN, port mirroring, QoS), cocok untuk jaringan sekolah/kantor || - Layer 3 switch – switch yang juga bisa melakukan routing sederhana || - Layer 3 switch – switch yang juga bisa melakukan routing sederhana || Router || Fungsi utama: Menghubungkan jaringan yang berbeda — misalnya menghubungkan jaringan lokal (LAN) ke internet (WAN). || Cara kerja: ||- Router bekerja di Layer 3 (Network) pada model OSI|| - Menggunakan IP address untuk menentukan jalur terbaik pengiriman data 
-        ||- Melakukan routing — memilih rute terbaik antar jaringan || - Biasanya juga menjalankan fungsi NAT (Network Address Translation) agar banyak perangkat bisa berbagi satu IP publik || Fitur tambahan yang umum ada di router: || - DHCP server (membagi IP otomatis ke perangkat) ||- Firewall dasar || - Wi-Fi (pada router rumahan/kantor kecil) || Contoh penggunaan: Menghubungkan jaringan sekolah ke internet dari ISP.|| Analogi sederhana: || Switch itu seperti jalan-jalan di dalam satu komplek perumahan (menghubungkan rumah-rumah), sedangkan router itu seperti gerbang tol yang menghubungkan komplek tersebut ke jalan raya (jaringan lain/internet). ">
-        <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1591405351990-4726e331f141?q=80&w=800&auto=format&fit=crop" alt="Perangkat jaringan">
-        <figcaption>Perangkat Router & Switch</figcaption>
-      </figure>
-      <figure onclick="openPhoto(this)"
-        data-img="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop"
-        data-title="Troubleshooting PC"
-        data-desc="Apa itu Troubleshooting PC?||- Troubleshooting adalah proses mendiagnosis dan memperbaiki masalah pada komputer secara sistematis — mulai dari mengidentifikasi gejala, mencari penyebab, sampai menemukan solusinya. || Metode Umum Troubleshooting || Ada pendekatan standar yang biasa dipakai (mirip dengan yang diajarkan di CompTIA A+): || - Identifikasi masalah – tanya user, cek gejala, catat perubahan terakhir sebelum masalah muncul || - Buat dugaan penyebab (theory) – berdasarkan gejala, tebak apa yang mungkin salah ||- Uji dugaan tersebut – coba cek satu per satu, dari yang paling sederhana dulu || - Buat rencana perbaikan – kalau dugaan benar, tentukan langkah perbaikan ||- Lakukan perbaikan – eksekusi solusi||- Verifikasi – pastikan masalah benar-benar selesai dan tidak muncul lagi || - Dokumentasikan – catat apa masalahnya dan bagaimana solusinya (penting buat laporan praktikum!) || Langkah Praktis Diagnosis || Cek fisik dulu (paling sering jadi solusi): || - Kabel power terpasang? || - Kabel data (SATA, VGA, LAN) longgar? || - Ada suara kipas berjalan? || - Lampu indikator menyala? || Kalau hardware oke, cek software: || - Masuk Safe Mode untuk isolasi masalah driver || - Cek Device Manager untuk lihat hardware bermasalah (tanda seru kuning) 
-        || - Gunakan Event Viewer untuk lihat log error Windows || - Command dasar: ping, ipconfig, chkdsk, sfc /scannow || Tools yang Sering Dipakai || - Multimeter – cek tegangan power supply || - POST card – diagnosa error saat booting || - Software diagnostic (CPU-Z, HWMonitor, CrystalDiskInfo) – cek kondisi hardware || - Command Prompt – ping, tracert, ipconfig /all || ">
-        <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop" alt="Troubleshooting PC">
-        <figcaption>Troubleshooting PC</figcaption>
-      </figure>
-      <figure class="g-wide" onclick="openPhoto(this)"
-        data-img="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=1400&auto=format&fit=crop"
-        data-title="Desain Topologi Jaringan"
-        data-desc="Merancang skema topologi jaringan di atas kertas maupun software simulasi sebelum diterapkan langsung ke perangkat fisik, melatih pola pikir perencanaan sebelum eksekusi.||Siswa mempelajari berbagai jenis topologi seperti star, bus, dan mesh, lalu menentukan mana yang paling sesuai untuk kebutuhan tertentu sebelum benar-benar memasang kabel dan perangkat di lab.">
-        <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=1200&auto=format&fit=crop" alt="Desain topologi jaringan">
-        <figcaption>Desain Topologi Jaringan</figcaption>
-      </figure>
-      <figure onclick="openPhoto(this)"
-        data-img="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop"
-        data-title="Workshop Hardware"
-        data-desc="Sesi bongkar-pasang komponen komputer (perakitan PC, penggantian komponen, pengecekan perangkat keras) untuk memperkuat pemahaman siswa tentang hardware secara langsung.||Melalui workshop ini, siswa mengenal fungsi tiap komponen seperti motherboard, RAM, dan storage, sekaligus berlatih merakit maupun membongkar PC dengan aman dan sistematis.">
-        <span class="corner tl"></span><span class="corner br"></span>
-        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="Workshop hardware">
-        <figcaption>Workshop Hardware</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="dark" id="praktik">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Bukan Sekadar Teori</span>
-      <h2>Kompetensi dalam Aksi</h2>
-      <p>Cuplikan singkat dari kegiatan praktikum, workshop, dan persiapan lomba yang jadi bagian dari program kelas.</p>
-    </div>
-
-    <div class="video-grid">
-      <div class="video-card">
-        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=1200&auto=format&fit=crop">
-          <source src="https://cdn.coverr.co/videos/coverr-working-in-network-room-5522/360p.mp4" type="video/mp4">
-        </video>
-        <div class="label">
-          <span>Praktikum Utama</span>
-          <h3>Lab Jaringan & Server</h3>
-        </div>
-      </div>
-
-      <div class="video-stack">
-        <div class="video-card">
-          <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop">
-            <source src="https://cdn.coverr.co/videos/coverr-repairing-a-computer-2620/360p.mp4" type="video/mp4">
-          </video>
-          <div class="label">
-            <span>Workshop</span>
-            <h3>Perakitan & Perbaikan PC</h3>
-          </div>
-        </div>
-        <div class="video-card">
-          <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop">
-            <source src="https://cdn.coverr.co/videos/coverr-coding-on-a-laptop-6929/360p.mp4" type="video/mp4">
-          </video>
-          <div class="label">
-            <span>Persiapan Lomba</span>
-            <h3>Latihan LKS / Kompetisi</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="kompetensi">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow">Program Utama</span>
-      <h2>Tiga Pilar Kompetensi</h2>
-      <p>Inilah tiga program inti yang membentuk kompetensi keahlian TKJ 1, dari dasar sampai siap uji sertifikasi.</p>
-    </div>
-  </div>
-
-  <div class="dest-grid">
-    <div class="dest-card">
-      <span class="dest-tag">Pilar 1</span>
-      <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop" alt="Jaringan komputer">
-      <h3>Jaringan Komputer</h3>
-      <p>Dasar hingga lanjutan: pengkabelan, subnetting, routing, dan konfigurasi perangkat jaringan.</p>
-      <div class="dest-price">
-        <div class="price">[Jumlah JP] JP/minggu <small>Pengampu: [Nama Guru]</small></div>
-        <a href="#">Lihat detail →</a>
-      </div>
-    </div>
-
-    <div class="dest-card">
-      <span class="dest-tag">Pilar 2</span>
-      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop" alt="Administrasi server">
-      <h3>Administrasi Server</h3>
-      <p>Instalasi dan pengelolaan server, layanan jaringan, serta manajemen pengguna dan hak akses.</p>
-      <div class="dest-price">
-        <div class="price">[Jumlah JP] JP/minggu <small>Pengampu: [Nama Guru]</small></div>
-        <a href="#">Lihat detail →</a>
-      </div>
-    </div>
-
-    <div class="dest-card">
-      <span class="dest-tag">Pilar 3</span>
-      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop" alt="Keamanan siber">
-      <h3>Keamanan Siber</h3>
-      <p>Pengenalan ancaman jaringan, firewall, dan praktik dasar pengamanan sistem.</p>
-      <div class="dest-price">
-        <div class="price">[Jumlah JP] JP/minggu <small>Pengampu: [Nama Guru]</small></div>
-        <a href="#">Lihat detail →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="dark" style="padding-bottom:0;" id="kenapa">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Kenapa Program Ini</span>
-      <h2>Yang Kami Bawa Pulang</h2>
-    </div>
-    <div class="why-grid">
-      <div class="why-item">
-        <span class="num">I.</span>
-        <h3>Sertifikasi Industri</h3>
-        <p>Program disiapkan agar siswa dapat mengikuti uji sertifikasi kompetensi sesuai bidang keahlian.</p>
-      </div>
-      <div class="why-item">
-        <span class="num">II.</span>
-        <h3>Praktik Langsung</h3>
-        <p>Lebih banyak waktu di lab dibanding di kelas — belajar dengan mengerjakan, bukan sekadar mendengar.</p>
-      </div>
-      <div class="why-item">
-        <span class="num">III.</span>
-        <h3>Siap Kerja, Siap Lanjut</h3>
-        <p>Bekal kompetensi yang relevan, baik untuk langsung bekerja maupun melanjutkan pendidikan.</p>
-      </div>
-    </div>
-
-    <div class="back-btn-bottom-wrap">
-      <a href="../index.html" class="back-btn-bottom">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Kembali
-      </a>
-    </div>
-  </div>
-</section>
-
-<footer class="site">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="brand">TKJ <em style="color:var(--gold); font-style:italic;">1</em></div>
-      <ul class="foot-links">
-        <li><a href="../index.html">Beranda</a></li>
-        <li><a href="#program">Program</a></li>
-        <li><a href="#praktik">Praktik</a></li>
-        <li><a href="#kompetensi">Kompetensi</a></li>
-        <li><a href="#kenapa">Kenapa Ini</a></li>
-      </ul>
-    </div>
-    <div class="bottom">
-      <span>Program Keahlian Teknik Komputer dan Jaringan TKJ 1 — SMK Imelda Medan.</span>
-      <span>© 2026 TKJ 1.</span>
-    </div>
-  </div>
-</footer>
-
-
-<div class="photo-modal" id="photoModal" onclick="if(event.target===this) closePhoto()">
-  <div class="photo-modal-inner">
-    <button class="photo-modal-close" onclick="closePhoto()" aria-label="Tutup">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    </button>
-    <img class="photo-modal-img" id="photoModalImg" src="" alt="">
-    <div class="photo-modal-body">
-      <span class="eyebrow" id="photoModalEyebrow">Dokumentasi Kegiatan</span>
-      <h3 id="photoModalTitle"></h3>
-      <div id="photoModalDesc"></div>
-    </div>
+  <div class="topo-wrap">
+    <svg id="topoSvg" viewBox="0 0 1100 460" width="100%" height="auto" role="img" aria-label="Diagram topologi materi TKJ 1"></svg>
   </div>
 </div>
 
+<section id="materi">
+  <div class="section-head">
+    <span class="tag">04 MODUL</span>
+    <h2>Rincian Materi</h2>
+    <p>// arahkan kursor pada tiap kartu</p>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="led-row"><i></i><i></i></div>
+      <div class="idx">NODE 01 · HARDWARE</div>
+      <h3>Perakitan Komputer</h3>
+      <p>Mengenal komponen fisik dan menyusunnya menjadi satu unit yang menyala dan berjalan normal.</p>
+      <ul>
+        <li>Komponen motherboard, CPU, RAM, storage</li>
+        <li>Prosedur perakitan & pemasangan yang aman</li>
+        <li>Pengecekan POST dan BIOS/UEFI</li>
+        <li>Troubleshooting perangkat keras dasar</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="led-row"><i></i><i></i></div>
+      <div class="idx">NODE 02 · SOFTWARE</div>
+      <h3>Sistem Operasi</h3>
+      <p>Memasang dan mengatur "otak" yang menjalankan seluruh perangkat keras yang sudah dirakit.</p>
+      <ul>
+        <li>Instalasi Windows & distro Linux</li>
+        <li>Partisi disk dan manajemen boot</li>
+        <li>Driver dan konfigurasi dasar sistem</li>
+        <li>Perintah dasar command line</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="led-row"><i></i><i></i></div>
+      <div class="idx">NODE 03 · JARINGAN</div>
+      <h3>Jaringan Dasar</h3>
+      <p>Menghubungkan satu komputer ke komputer lain hingga membentuk sebuah jaringan yang saling bicara.</p>
+      <ul>
+        <li>Topologi jaringan (star, bus, mesh, ring)</li>
+        <li>Pengkabelan UTP & konektor RJ-45</li>
+        <li>Pengalamatan IP dan subnetting dasar</li>
+        <li>Perangkat: switch, router, access point</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="led-row"><i></i><i></i></div>
+      <div class="idx">NODE 04 · LOGIKA</div>
+      <h3>Pemrograman Dasar</h3>
+      <p>Melatih cara berpikir sistematis sebelum menulis instruksi untuk mesin.</p>
+      <ul>
+        <li>Algoritma dan flowchart</li>
+        <li>Struktur kontrol (percabangan, perulangan)</li>
+        <li>Dasar HTML sebagai pengantar</li>
+        <li>Logika pemecahan masalah</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="led-row"><i></i><i></i></div>
+      <div class="idx">NODE 05 · TEORI</div>
+      <h3>Sistem Komputer</h3>
+      <p>Memahami cara kerja komputer dari dalam: bagaimana data diproses secara digital.</p>
+      <ul>
+        <li>Konversi bilangan biner, oktal, heksadesimal</li>
+        <li>Arsitektur dan cara kerja CPU</li>
+        <li>Konsep input–proses–output</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="led-row"><i></i><i></i></div>
+      <div class="idx">NODE 06 · DIGITAL</div>
+      <h3>Simulasi & Komunikasi Digital</h3>
+      <p>Menggunakan perangkat digital untuk berkomunikasi, berkolaborasi, dan mempresentasikan hasil kerja.</p>
+      <ul>
+        <li>Kolaborasi dokumen daring</li>
+        <li>Simulasi visual & presentasi digital</li>
+        <li>Etika berkomunikasi di dunia maya</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section id="jadwal">
+  <div class="section-head">
+    <span class="tag">LOG</span>
+    <h2>Ringkasan Semester</h2>
+    <p>// urutan umum penyampaian materi</p>
+  </div>
+  <div class="terminal">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <div class="body">
+      <div class="row"><span class="h">01 · Fondasi</span> Sistem Komputer & Perakitan Komputer — mengenal mesin secara fisik dan logis.</div>
+      <div class="row"><span class="h">02 · Instalasi</span> Sistem Operasi — menyalakan mesin dengan perangkat lunak yang tepat.</div>
+      <div class="row"><span class="h">03 · Koneksi</span> Jaringan Dasar — menyambungkan satu unit ke unit lainnya.</div>
+      <div class="row"><span class="h">04 · Logika</span> Pemrograman Dasar — mulai menyusun instruksi untuk sistem.</div>
+      <div class="row"><span class="h">05 · Presentasi</span> Simulasi & Komunikasi Digital — menyampaikan hasil kerja secara digital.</div>
+      <div class="row"><span class="p">tkj1@kelas</span><span class="cmd">:~$ _</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  KELAS TKJ 1 · PETA MATERI PEMBELAJARAN · DIBUAT UNTUK KEPERLUAN BELAJAR
+</footer>
+
 <script>
-  function openPhoto(fig){
-    const modal = document.getElementById('photoModal');
-    document.getElementById('photoModalImg').src = fig.getAttribute('data-img');
-    document.getElementById('photoModalTitle').textContent = fig.getAttribute('data-title');
+(function(){
+  const svg = document.getElementById('topoSvg');
+  const ns = "http://www.w3.org/2000/svg";
+  const cx = 550, cy = 230;
 
-    const descContainer = document.getElementById('photoModalDesc');
-    descContainer.innerHTML = '';
-    const paragraphs = fig.getAttribute('data-desc').split('||');
-    paragraphs.forEach(function(text){
-      const p = document.createElement('p');
-      p.textContent = text.trim();
-      descContainer.appendChild(p);
+  const nodes = [
+    {label:"Perakitan", sub:"Hardware", angle:-100},
+    {label:"Sistem Operasi", sub:"Software", angle:-35},
+    {label:"Jaringan Dasar", sub:"Networking", angle:35},
+    {label:"Pemrograman", sub:"Logika", angle:100},
+    {label:"Sistem Komputer", sub:"Teori", angle:165},
+    {label:"Simulasi Digital", sub:"Komunikasi", angle:-165},
+  ];
+
+  const R = 175;
+
+  function pt(angleDeg, r, ox, oy){
+    const a = angleDeg * Math.PI/180;
+    return { x: ox + r*Math.cos(a), y: oy + r*Math.sin(a)*0.72 };
+  }
+
+  function el(tag, attrs){
+    const e = document.createElementNS(ns, tag);
+    for(const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  // ring
+  svg.appendChild(el('ellipse', {cx, cy, rx:R+30, ry:(R+30)*0.72, class:'hub-ring'}));
+
+  // hub
+  const hub = el('g', {});
+  hub.appendChild(el('rect', {x:cx-56, y:cy-24, width:112, height:48, rx:6, class:'hub-box'}));
+  const hubText = el('text', {x:cx, y:cy-2, 'text-anchor':'middle', class:'node-label', fill:'#e8eef5'});
+  hubText.textContent = "TKJ 1";
+  const hubSub = el('text', {x:cx, y:cy+14, 'text-anchor':'middle', class:'node-sub'});
+  hubSub.textContent = "KELAS";
+  hub.appendChild(hubText); hub.appendChild(hubSub);
+
+  const cablesGroup = el('g', {});
+  const nodesGroup = el('g', {});
+
+  nodes.forEach((n, i) => {
+    const p = pt(n.angle, R, cx, cy);
+    const c1 = pt(n.angle, R*0.4, cx, cy);
+
+    // cable path (curved)
+    const path = el('path', {
+      d: `M ${cx} ${cy} Q ${c1.x} ${c1.y} ${p.x} ${p.y}`,
+      class:'cable'
     });
+    cablesGroup.appendChild(path);
 
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closePhoto(){
-    const modal = document.getElementById('photoModal');
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') closePhoto();
+    // animated pulse traveling on cable
+    const pulse = el('circle', {r:3, class:'pulse'});
+    const anim = el('animateMotion', {
+      dur: (3 + i*0.4).toFixed(1)+"s",
+      repeatCount:"indefinite",
+      path: `M ${cx} ${cy} Q ${c1.x} ${c1.y} ${p.x} ${p.y}`
+    });
+    pulse.appendChild(anim);
+    cablesGroup.appendChild(pulse);
+
+    // node group
+    const g = el('g', {class:'node-group', style:'cursor:pointer'});
+    const boxW = 118, boxH = 46;
+    g.appendChild(el('rect', {x:p.x-boxW/2, y:p.y-boxH/2, width:boxW, height:boxH, rx:5, class:'port'}));
+    g.appendChild(el('circle', {cx:p.x-boxW/2+10, cy:p.y-boxH/2+10, r:2.6, class:'led'}));
+    const t1 = el('text', {x:p.x, y:p.y-2, 'text-anchor':'middle', class:'node-label'});
+    t1.textContent = n.label;
+    const t2 = el('text', {x:p.x, y:p.y+13, 'text-anchor':'middle', class:'node-sub'});
+    t2.textContent = n.sub;
+    g.appendChild(t1); g.appendChild(t2);
+    nodesGroup.appendChild(g);
   });
+
+  svg.appendChild(cablesGroup);
+  svg.appendChild(hub);
+  svg.appendChild(nodesGroup);
+})();
 </script>
 
 </body>
